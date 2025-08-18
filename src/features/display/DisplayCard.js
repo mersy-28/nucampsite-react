@@ -5,10 +5,7 @@ const DisplayCard = ({ item }) => {
 
   return (
     <Card>
-      <CardImg
-        src={image}
-        alt={name}
-      />
+      <CardImg src={image} alt={name} />
       <CardBody>
         <CardTitle>{name}</CardTitle>
         <CardText>{description}</CardText>

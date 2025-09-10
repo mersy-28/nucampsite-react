@@ -1,4 +1,6 @@
 import CampsiteCard from "./CampsiteCard";
+import Error from "../../components/Error";
+import Loading from "../../components/Loading";
 import { Row, Col } from 'reactstrap';
 import { selectAllCampsites } from "./campsitesSlice";
 import { useSelector } from "react-redux";
@@ -6,6 +8,25 @@ import { useSelector } from "react-redux";
 const CampsitesList = () => {
   const campsites = useSelector(selectAllCampsites);
   console.log('campsites:', campsites);
+
+  const isLoading = useSelector((state) => state.campsites.isLoading);
+  const errMsg = useSelector((state) => state.campsites.errMsg);
+
+  if (isLoading) {
+    return (
+      <Row>
+        <Loading />
+      </Row>
+    );
+  }
+
+  if (errMsg) {
+    return (
+      <Row>
+        <Error errMsg={errMsg} />
+      </Row>
+    );
+  }
 
   return (
     <Row className="ms-auto">
